@@ -20,7 +20,11 @@ exports.user_create_post = [
         .trim()
         .isLength( { min: 1 })
         .escape()
-        .withMessage("Password must be provided."),
+        .withMessage("Password must be provided.")
+        .custom((value, { req }) => {
+            return value === req.body.user_password;
+        })
+        .withMessage("Passwords must match."),
     body("first_name")
         .trim()
         .isLength( { min: 1 })
@@ -39,6 +43,13 @@ exports.user_create_post = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
+        const user = new User({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            admin: !(undefined===req.body.is_admin),
+            username: req.body.username,
+        });
+
         if (!errors.isEmpty()) {
             res.render("signup_form", {
                 title: "Sign Up",
@@ -51,13 +62,7 @@ exports.user_create_post = [
                 if (err) {
                     return next(err);
                 }
-                const user = new User({
-                    username: req.body.username,
-                    password: hashedPassword,
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    admin: !(undefined===req.body.is_admin),
-                });
+                user.password = hashedPassword;
                 const result = await user.save();
                 res.redirect("/");
             });
