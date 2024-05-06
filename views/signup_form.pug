@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1=title
+
+  form.sign-up(method='POST')
+    section.form-inputs 
+      ul 
+        li
+          label(for='username') Username:
+          input#username.form-control(type='text' name='username' required)
+        li
+          label(for='user_password') Password:
+          input#user_password.form-control(type='password' name='user_password' required)
+        li 
+          label(for='confirm_password') Confirm Password:
+          input#confirm_password.form-control(type='password' name='confirm_password' required)
+        li 
+          hr
+        li 
+          label(for='first_name') First Name:
+          input#first_name.form-control(type='text', placeholder='First name (Christian)' name='first_name' required)
+        li 
+          label(for='last_name') Last Name:
+          input#last_name.form-control(type='text', placeholder='Last name (Surname)' name='last_name' required)
+        li
+          label(for='is_admin') User is admin:
+          input#is_admin.form-control(type='checkbox' name='is_admin')
+                    
+    section.form-submit
+      button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
