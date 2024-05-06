@@ -69,3 +69,27 @@ exports.user_create_post = [
         };
     }),
 ];
+
+exports.user_join_club_post = [
+    body("secret_code")
+        .trim()
+        .escape()
+        .custom((value, { req }) => {
+            return value === process.env.SECRET_CODE;
+        })
+        .withMessage("Invalid code."),
+    
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            res.render("join_club", {
+                title: "Join the Club",
+                errors: errors.array(),
+            });
+            return;
+        } else {
+            res.redirect("/");
+        };
+    }),
+];
