@@ -8,7 +8,7 @@ block content
       ul.form-fields
         li
           label(for='username') Username:
-          input#username.form-control(type='text' name='username' required)
+          input#username.form-control(type='text' name='username' required value=(undefined===user ? '' : user.username) )
         li
           label(for='user_password') Password:
           input#user_password.form-control(type='password' name='user_password' required)
@@ -19,13 +19,13 @@ block content
           hr
         li 
           label(for='first_name') First Name:
-          input#first_name.form-control(type='text', placeholder='First name (Christian)' name='first_name' required)
+          input#first_name.form-control(type='text', placeholder='First name (Christian)' name='first_name' required value=(undefined===user ? '' : user.first_name) )
         li 
           label(for='last_name') Last Name:
-          input#last_name.form-control(type='text', placeholder='Last name (Surname)' name='last_name' required)
+          input#last_name.form-control(type='text', placeholder='Last name (Surname)' name='last_name' required value=(undefined===user ? '' : user.last_name) )
         li
           label(for='is_admin') User is admin:
-          input#is_admin.form-control(type='checkbox' name='is_admin')
+          input#is_admin.form-control(type='checkbox' name='is_admin' value=(undefined===user ? '' : user.username) )
                     
     section.form-submit
       button.btn.btn-primary(type='submit') Submit
