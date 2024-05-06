@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcryptjs");
 
 exports.user_create_post = [
     body("username")
@@ -38,14 +39,6 @@ exports.user_create_post = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
 
-        const user = new User({
-            username: req.body.username,
-            password: req.body.user_password,
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            admin: !(undefined===req.body.is_admin),
-        });
-
         if (!errors.isEmpty()) {
             res.render("signup_form", {
                 title: "Sign Up",
@@ -54,8 +47,20 @@ exports.user_create_post = [
             });
             return;
         } else {
-            await user.save();
-            res.redirect("/");
-        }
+            bcrypt.hash(req.body.user_password, 10, async (err, hashedPassword) => {
+                if (err) {
+                    return next(err);
+                }
+                const user = new User({
+                    username: req.body.username,
+                    password: hashedPassword,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    admin: !(undefined===req.body.is_admin),
+                });
+                const result = await user.save();
+                res.redirect("/");
+            });
+        };
     }),
 ];
