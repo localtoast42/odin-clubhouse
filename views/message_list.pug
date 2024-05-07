@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+
+  if message_list.length 
+    each message in message_list 
+      div 
+        h3 #{message.author.fullname}
+        h4 #{message.title}
+        p #{message.text}
+        p #{message.timestamp}
+
+  else 
+    p There are no messages.
