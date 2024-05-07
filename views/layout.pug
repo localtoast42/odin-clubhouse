@@ -17,12 +17,14 @@ html(lang='en')
               li
                 a(href='/') Home
               li
-                a(href='/join-club') Join the club
-              li
                 hr
-              li
-                a(href='/message/create') Create new message 
               if user 
+                li
+                  a(href='/message/create') Create new message 
+                li
+                  a(href='/join-club') Join the club
+                li
+                  hr
                 li 
                   a(href='/logout') Logout 
               else 
