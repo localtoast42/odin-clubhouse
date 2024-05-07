@@ -4,8 +4,6 @@ ul {
     margin: 0;
 }
 
-
-
 label {
     display: inline-block;
 }
@@ -16,7 +14,7 @@ label {
     list-style: none;
 }
 
-.sign-up {
+.sign-up, .login {
     max-width: 600px;
 }
 
