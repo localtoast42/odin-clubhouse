@@ -89,7 +89,16 @@ exports.user_join_club_post = [
             });
             return;
         } else {
-            res.redirect("/");
+            const updatedUser = await User.findByIdAndUpdate(
+                req.user.id, 
+                { member_status: 'Verified' }
+            );
+            req.login(updatedUser, (err) => {
+                if (err) {
+                    return next(err);
+                }
+                res.redirect("/");
+            });
         };
     }),
 ];
