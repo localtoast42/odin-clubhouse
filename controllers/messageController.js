@@ -2,6 +2,15 @@ const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
+exports.message_list_get = asyncHandler(async (req, res, next) => {
+    const allMessages = await Message.find()
+        .sort({ timestamp: 1 })
+        .populate("author")
+        .exec();
+  
+    res.render("message_list", { title: "Messages", user: req.user, message_list: allMessages });
+});
+
 exports.message_create_post = [
     body("title")
         .trim()
