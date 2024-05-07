@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1=title
+
+  form.create-message(method='POST')
+    section.form-inputs 
+      ul.form-fields
+        li
+          label(for='title') Title:
+          input#title.form-control(type='text' name='title' required value=(undefined===message ? '' : message.title) )
+        li
+          label(for='message_text') Message:
+          textarea#message_text.form-control(name='message_text' required value=(undefined===message ? '' : message.text) )
+                    
+    section.form-submit
+      button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
