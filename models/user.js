@@ -11,7 +11,7 @@ const UserSchema = new Schema({
     admin: { type: Boolean, default: false },
 });
 
-UserSchema.virtual("fullname").get(() => {
+UserSchema.virtual("fullname").get(function () {
     let fullname = "";
     if (this.first_name && this.last_name) {
         fullname = `${this.first_name} ${this.last_name}`;
