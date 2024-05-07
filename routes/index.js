@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const passport = require("passport");
+const Message = require("../models/message");
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('index', { title: 'Home', user: req.user });
+    res.redirect("/messages");
 });
 
 router.get('/login', (req, res, next) => {
@@ -13,7 +14,7 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login',
     passport.authenticate("local", {
-        successRedirect: "/",
+        successRedirect: "/messages",
         failureRedirect: "/login"
     })
 );
