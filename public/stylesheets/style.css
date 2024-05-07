@@ -14,7 +14,7 @@ label {
     list-style: none;
 }
 
-.sign-up, .login {
+.sign-up, .login, .create-message {
     max-width: 600px;
 }
 
