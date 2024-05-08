@@ -7,13 +7,14 @@ block content
     if message_list.length 
       each message in message_list 
         div
-          if user
-            if user.member_status === "Verified"
-              h4.author-name #{message.author.fullname}
+          div.message-header
+            if user
+              if user.member_status === "Verified"
+                h4.author-name #{message.author.fullname}
+                div #{message.timestamp_formatted}
           div.message-card 
             h4.title #{message.title}
-            p #{message.text}
-            div #{message.timestamp_formatted}
+            p.message-text #{message.text}
 
     else 
       p There are no messages.
