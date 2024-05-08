@@ -2,17 +2,19 @@ extends layout
 
 block content
   h1= title
-  
-  if message_list.length 
-    each message in message_list 
-      div 
-        if user
-          if user.member_status === "Verified"
-            h3 #{message.author.fullname}
-        h4 #{message.title}
-        p #{message.text}
-        p #{message.timestamp_formatted}
 
-  else 
-    p There are no messages.
+  div.message-container
+    if message_list.length 
+      each message in message_list 
+        div
+          if user
+            if user.member_status === "Verified"
+              h4.author-name #{message.author.fullname}
+          div.message-card 
+            h4.title #{message.title}
+            p #{message.text}
+            div #{message.timestamp_formatted}
+
+    else 
+      p There are no messages.
 

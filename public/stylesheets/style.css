@@ -25,3 +25,26 @@ label {
     gap: 24px;
     margin-bottom: 16px;
 }
+
+.message-container {
+    display: grid;
+    gap: 24px;
+}
+
+.message-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 2px 2px 10px lightgray;
+    padding: 12px;
+}
+
+.author-name {
+    font-size: 18px;
+}
+
+.title {
+    font-size: 18px;
+}
