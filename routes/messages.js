@@ -11,4 +11,6 @@ router.get('/create', function(req, res, next) {
 
 router.post('/create', message_controller.message_create_post);
 
+router.post('/:id/delete', message_controller.message_delete_post);
+
 module.exports = router;
