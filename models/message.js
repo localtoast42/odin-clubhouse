@@ -10,6 +10,10 @@ const MessageSchema = new Schema({
     text: { type: String, required: true },
 });
 
+MessageSchema.virtual("url").get(function () {
+    return `/messages/${this._id}`;
+});
+
 MessageSchema.virtual("timestamp_formatted").get(function () {
     return this.timestamp ? DateTime.fromJSDate(this.timestamp).toLocaleString(DateTime.DATETIME_SHORT) : '';
 });
