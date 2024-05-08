@@ -15,6 +15,11 @@ block content
           div.message-card 
             h4.title #{message.title}
             p.message-text #{message.text}
+            if user 
+              if user.admin 
+                form(method='POST' action=message.url + '/delete')
+                  input#messageid.form-control(type='hidden', name='messageid', value=message._id )
+                  button.btn.btn-primary(type='submit') Delete message
 
     else 
       p There are no messages.
