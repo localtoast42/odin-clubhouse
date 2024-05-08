@@ -31,6 +31,13 @@ label {
     gap: 24px;
 }
 
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    padding: 0 12px;
+}
+
 .message-card {
     display: flex;
     flex-direction: column;
@@ -47,4 +54,8 @@ label {
 
 .title {
     font-size: 18px;
+}
+
+.message-text {
+    margin: 0;
 }
