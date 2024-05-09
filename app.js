@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const compression = require("compression");
 const flash = require('express-flash');
+const methodOverride = require('method-override');
 const helmet = require('helmet');
 const User = require('./models/user');
 
@@ -43,6 +44,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
+app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));

@@ -17,7 +17,7 @@ block content
             p.message-text #{message.text}
             if user 
               if user.admin 
-                form(method='POST' action=message.url + '/delete')
+                form(method='POST' action=message.url + '?_method=DELETE')
                   input#messageid.form-control(type='hidden', name='messageid', value=message._id )
                   button.btn.btn-primary(type='submit') Delete message
 
