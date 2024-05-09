@@ -16,6 +16,9 @@ block content
     section.form-submit
       button.btn.btn-primary(type='submit') Submit
 
+  if messages.error
+    p #{messages.error}
+  
   if errors
     ul
       for error in errors

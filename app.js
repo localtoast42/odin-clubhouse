@@ -1,17 +1,18 @@
-require('dotenv').config()
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const session = require("express-session");
+const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const passport = require("passport");
-const bcrypt = require("bcryptjs");
-const LocalStrategy = require("passport-local").Strategy;
+const passport = require('passport');
+const bcrypt = require('bcryptjs');
+const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const compression = require("compression");
-const helmet = require("helmet");
-const User = require("./models/user");
+const flash = require('express-flash');
+const helmet = require('helmet');
+const User = require('./models/user');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -41,6 +42,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(flash());
 app.use(cookieParser());
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
